@@ -1,0 +1,18 @@
+-
+  versions:
+    min: "0"
+  matching:
+   - Can't install RMagick [\d\.]+. Can't find MagickWand.h.
+   - No package 'MagickCore' found
+  message: |
+    {{bold:What is the problem?}}
+    The issue is {{underline:likely that the version of Imagemagick on your compiter is incompatible.}}
+
+    {{bold:Compatible versions of Imagemagick}}
+    - {{underline:ImageMagick 6.9.9-40}} and lower
+
+    {{bold:What can I do?}}
+    One of the following steps may help:
+    - install a compatible Imagemagick
+    - upgrade RMagick
+    - use a different gem (like mini_magick)

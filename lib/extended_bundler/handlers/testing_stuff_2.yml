@@ -1,0 +1,6 @@
+-
+  versions:
+    min: 1.0
+  matching:
+   - "testing stuff only"
+  message: This is a message

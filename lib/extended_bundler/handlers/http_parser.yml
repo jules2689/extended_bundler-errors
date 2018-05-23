@@ -1,0 +1,16 @@
+-
+  versions: all
+  matching:
+   - "ld: library not found for -lgmp"
+  message: |
+    You need to install developer tools for your system.
+
+    One of the following commands may help:
+
+    Ubuntu:
+     - `apt-get install build-essential`
+     - `apt-get install libgmp-dev`
+
+    Mac:
+     - `xcode-select --install`
+     - `brew uninstall gmp` and `brew install gmp`
