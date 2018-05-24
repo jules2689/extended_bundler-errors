@@ -1,30 +1,39 @@
 # ExtendedBundler::Errors
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/extended_bundler/errors`. To experiment with that code, run `bin/console` for an interactive prompt.
+Extended Bundler Errors is a `bundler` plugin that makes gem installation errors more actionable, educative, and all around easier to understand.
 
-TODO: Delete this and the text above, and describe your gem
+Previously when gems fail, `bundler` would simply tell you it failed and give you any output from the gem itself. This often includes C traces from native extensions.
+
+These are hard to follow, particularly for people new to Ruby, because it requires you to understand the underlying system, programs in use (Imagemagick, SSL libraries, parsers, etc), and the output is simply verbose.
+
+This gem instead will try to match the output of the gem to a series of handlers (see `lib/extended_bundler/handlers` for a list). Each handler is specific to a gem, an matches one of many potential output. Once matched, we replace the error with something that explains the known problem, how to fix it, and (if possible) include a link to the original output.
+
+Here is an example:
+
+Before when RMagick fails to install, you got a verbose log.
+
+![Before this plugin, RMagick failures were cryptic and confusing](https://user-images.githubusercontent.com/3074765/40488035-c89a6678-5f33-11e8-89fc-f66c054d8765.png)
+
+After when it fails to install you get a specific, actionable reason and step-by-step guide on how to handle it.
+
+![After This Plugin, RMagick has better errors](https://user-images.githubusercontent.com/3074765/40487762-27d555b8-5f33-11e8-86db-29eadc737f58.png)
+
 
 ## Installation
 
-Add this line to your application's Gemfile:
+While this is a gem, you need to install it as a plugin:
 
-```ruby
-gem 'extended_bundler-errors'
-```
+`bundler plugin install extended_bundler-errors`
 
-And then execute:
+OR
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install extended_bundler-errors
-
-## Usage
-
-TODO: Write usage instructions here
+`bundler plugin install extended_bundler-errors --git=https://github.com/Shopify/extended_bundler-errors.git`
 
 ## Development
+
+It is recommended to install from `git` and work directly in a `bundle install` run.
+
+You can also...
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
