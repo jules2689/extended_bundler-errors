@@ -16,8 +16,7 @@ Before when RMagick fails to install, you got a verbose log.
 
 After when it fails to install you get a specific, actionable reason and step-by-step guide on how to handle it.
 
-![After This Plugin, RMagick has better errors](https://user-images.githubusercontent.com/3074765/40487762-27d555b8-5f33-11e8-86db-29eadc737f58.png)
-
+![After This Plugin, RMagick has better errors](https://user-images.githubusercontent.com/3074765/40488820-a31d5a5c-5f35-11e8-9333-3e2a4ce20f7e.png)
 
 ## Installation
 
