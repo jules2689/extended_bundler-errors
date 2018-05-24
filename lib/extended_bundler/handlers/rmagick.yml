@@ -6,7 +6,7 @@
    - No package 'MagickCore' found
   message: |
     {{bold:What is the problem?}}
-    The issue is {{underline:likely that the version of Imagemagick on your compiter is incompatible.}}
+    The issue is {{underline:likely that the version of Imagemagick on your computer is incompatible.}}
 
     {{bold:Compatible versions of Imagemagick}}
     - {{underline:ImageMagick 6.9.9-40}} and lower
