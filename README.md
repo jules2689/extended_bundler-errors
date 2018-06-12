@@ -8,7 +8,7 @@ These are hard to follow, particularly for people new to Ruby, because it requir
 
 This gem instead will try to match the output of the gem to a series of handlers (see `lib/extended_bundler/handlers` for a list). Each handler is specific to a gem, an matches one of many potential output. Once matched, we replace the error with something that explains the known problem, how to fix it, and (if possible) include a link to the original output.
 
-Here is an example:
+## Example
 
 Before when RMagick fails to install, you got a verbose log.
 
@@ -20,7 +20,7 @@ After when it fails to install you get a specific, actionable reason and step-by
 
 ## Installation
 
-While this is a gem, you need to install it as a plugin:
+While this is a gem, you need to install it as a [Bundler plugin](https://bundler.io/v1.16/guides/bundler_plugins.html):
 
 `bundler plugin install extended_bundler-errors`
 
