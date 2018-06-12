@@ -40,11 +40,13 @@ class ExtendedBundler::HandlersTest < Minitest::Test
             "handler/matching should be an array of strings in #{file}"
         end
 
-        # Message should be a string
-        assert_includes handler.keys, 'message',
+        # Messages should be a hash
+        assert_includes handler.keys, 'messages',
           "handler/message should exist in #{file}"
-        assert_kind_of String, handler['message'],
-          "handler/message should be a string in #{file}"
+        assert_kind_of Hash, handler['messages'],
+          "handler/messages should be a hash of messages keyed by lang in #{file}"
+        assert_includes handler['messages'].keys, 'en',
+          "handler/messages should always include an English message at minimum in #{file}"
       end
     end
   end

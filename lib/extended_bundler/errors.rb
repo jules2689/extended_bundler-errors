@@ -1,6 +1,8 @@
 require "extended_bundler/errors/version"
 require "extended_bundler/errors/formatter"
 require "extended_bundler/backports"
+require "i18n/locale/tag"
+
 
 require "bundler"
 require "fileutils"
@@ -66,7 +68,7 @@ module ExtendedBundler
       end
 
       def build_error(spec_install, handler)
-        body = handler['message']
+        body = message(handler)
         # If we can pull out the original logs, add those to the message
         if log = spec_install.error.match(/Results logged to (?<message>.*)/)
           body += "\n{{bold:Original Logs are available at:}}\n" + log[:message]
@@ -77,6 +79,15 @@ module ExtendedBundler
         lines = [ "{{bold:#{title}}}", ("━" * title.length), body.lines.map(&:chomp) ].flatten
         formatted_lines = lines.map { |l| "{{red:┃}} #{l}".strip }
         ExtendedBundler::Errors::Formatter.new(formatted_lines.join("\n")).format
+      end
+
+      def message(handler)
+        # Grab the LANG environment variable
+        # Assume it's in Posix compliant ISO 15897 format (which is approx lang_region.encoding).
+        # Grab the lang out of that. If for some reason this isn't available, default back to
+        # English on any issue.
+        iso_15897_posix_lang = ENV.fetch('LANG', 'en').split('_').first
+        handler['messages'][iso_15897_posix_lang] || handler['messages']['en']
       end
 
       def handler_path(gem_name)
