@@ -12,10 +12,12 @@ module ExtendedBundler
       # Registers the plugin and adds all needed hooks
       # Will call troubleshoot via the `after-install` hook if the install does not succeed
       def register
+        puts @registered.inspect
         return if defined?(@registered) && @registered
         @registered = true
 
         Bundler::Plugin.add_hook('after-install') do |spec_install|
+          puts spec_install
           troubleshoot(spec_install) if spec_install.state != :installed
         end
       end
