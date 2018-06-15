@@ -5,14 +5,19 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil ::ExtendedBundler::Errors::VERSION
   end
-  
-  class RegisterTest < Minitest::Test
+
+  class BaseTest < Minitest::Test
     def setup
       super
       Bundler::Plugin.instance_variable_set(:@hooks_by_event, Hash.new {|h, k| h[k] = [] })
       ExtendedBundler::Errors.instance_variable_set(:@registered, false)
-    end
 
+      Bundler::Plugin.index.stubs(:hook_plugins).returns(['plugin'])
+      Bundler::Plugin.stubs(:load_plugin).with('plugin')
+    end
+  end
+
+  class RegisterTest < BaseTest
     def test_adds_hook
       ExtendedBundler::Errors.register
       assert_equal 1, Bundler::Plugin.instance_variable_get(:@hooks_by_event)['after-install'].size
@@ -25,7 +30,7 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
     end
   end
 
-  class TroubleshootTest < Minitest::Test
+  class TroubleshootTest < BaseTest
     def test_nothing_is_called_for_succeeded_install
       ExtendedBundler::Errors.register
       spec_install = Bundler::ParallelInstaller::SpecInstallation.new(Gem::Specification.new)
@@ -43,7 +48,7 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
     end
   end
 
-  class MatchingTest < Minitest::Test
+  class MatchingTest < BaseTest
     def test_matches_name_version_and_message
       spec_install = Bundler::ParallelInstaller::SpecInstallation.new(gem_spec)
       spec_install.state = :failed
