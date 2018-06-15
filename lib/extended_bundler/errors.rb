@@ -15,7 +15,6 @@ module ExtendedBundler
         puts "\n"
         puts "REGISTERED " + @registered.inspect
         puts Bundler::Plugin.instance_variable_get(:@hooks_by_event).inspect
-        puts "\n"
         return if defined?(@registered) && @registered
         @registered = true
 
@@ -23,6 +22,8 @@ module ExtendedBundler
           puts spec_install
           troubleshoot(spec_install) if spec_install.state != :installed
         end
+        puts "REGISTERED " + @registered.inspect
+        puts Bundler::Plugin.instance_variable_get(:@hooks_by_event).inspect
       end
 
       # Troubleshoots a failed installation
