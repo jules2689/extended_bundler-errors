@@ -1,0 +1,18 @@
+-
+  versions:
+    max: "0.5.0"
+  matching:
+   - use of undeclared identifier 'MYSQL_SECURE_AUTH'
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      The issue is {{underline:likely that the version of MySQL on your computer is incompatible.}}
+      This has more info: {{underline:https://github.com/brianmario/mysql2/issues/891}}
+
+      {{bold:Compatible versions of MySQL}}
+      - {{underline:MySQL 5.7.x}} and lower
+
+      {{bold:What can I do?}}
+      One of the following steps may help:
+      - install a compatible MySQL
+      - upgrade the mysql2 gem to at least 0.5.0

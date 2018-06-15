@@ -1,8 +1,6 @@
 require "extended_bundler/errors/version"
 require "extended_bundler/errors/formatter"
 require "extended_bundler/backports"
-require "i18n/locale/tag"
-
 
 require "bundler"
 require "fileutils"
