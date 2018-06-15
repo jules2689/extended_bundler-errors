@@ -41,6 +41,7 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
       spec_install = Bundler::ParallelInstaller::SpecInstallation.new(Gem::Specification.new)
       spec_install.state = :failed
       ExtendedBundler::Errors.expects(:troubleshoot).with(spec_install)
+      puts Bundler::Plugin.instance_variable_get(:@hooks_by_event).inspect
       Bundler::Plugin.hook('after-install', spec_install)
     end
   end

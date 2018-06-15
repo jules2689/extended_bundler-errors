@@ -13,8 +13,6 @@ module ExtendedBundler
       # Will call troubleshoot via the `after-install` hook if the install does not succeed
       def register
         puts "\n"
-        puts "REGISTERED " + @registered.inspect
-        puts Bundler::Plugin.instance_variable_get(:@hooks_by_event).inspect
         return if defined?(@registered) && @registered
         @registered = true
 
@@ -22,8 +20,6 @@ module ExtendedBundler
           puts spec_install
           troubleshoot(spec_install) if spec_install.state != :installed
         end
-        puts "REGISTERED " + @registered.inspect
-        puts Bundler::Plugin.instance_variable_get(:@hooks_by_event).inspect
       end
 
       # Troubleshoots a failed installation
