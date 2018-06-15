@@ -42,7 +42,7 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
       spec_install.state = :failed
       ExtendedBundler::Errors.expects(:troubleshoot).with(spec_install)
       puts Bundler::Plugin.instance_variable_get(:@hooks_by_event).inspect
-      puts Bundler.feature_flag.plugins?.inspect
+      puts Bundler::Plugin.index.hook_plugins('after-install').inspect
       Bundler::Plugin.hook('after-install', spec_install)
     end
   end
