@@ -13,6 +13,7 @@ if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.17')
       alias_method :old_do_install, :do_install
       def do_install(spec_install, worker_num)
         ret = old_do_install(spec_install, worker_num)
+        puts "HERE"
         Bundler::Plugin.hook('after-install', ret)
         ret
       end
