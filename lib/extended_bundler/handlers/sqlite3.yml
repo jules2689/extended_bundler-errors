@@ -1,0 +1,24 @@
+-
+  versions: all
+  matching:
+   - cannot load such file -- mkmf
+   - sqlite3 is missing
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      You are missing the SQLite binaries required to install the gem.
+
+      {{bold:What can I do?}}
+      Mac:  One of these might help:
+        - {{command:brew install sqlite}}
+        - {{command:brew install ruby-dev}}
+
+      Linux: One of these might help:
+        APT:
+        - {{command:sudo apt-get install ruby-dev}}
+        - {{command:sudo apt-get install libsqlite3-dev}}
+        - {{command:sudo apt-get install make}}
+
+        YUM:
+        - {{command:yum install sqlite3-devel}}
+
