@@ -1,0 +1,29 @@
+-
+  versions: all
+  matching:
+   - unable to fetch v8 source
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      This is probably caused by compilation issues with native C extensions and Ruby.
+
+      {{bold:What can I do?}}
+      You may need to remove Ruby, Gems, and all Bundler caches.
+
+      1. Run {{command:ruby -v}} to see what version of Ruby you are running.
+         - You might see something like {{italic:ruby -v ruby 2.3.3p222 (2016-11-21 revision 56859) [x86_64-darwin17]}}
+      2. The {{info:x86_64-darwin17}} part of this means that Ruby was built for darwin17 (Mac OS High Sierra).
+         - If you are running a different operating system than the one specified (if one is specified),
+           then you will need to remove your Ruby installation, gems (~/.gem), and bundle (~/.bundle)
+           and reinstall everything
+         - Remove everything with {{command:rm -rf ~/.gem ~/.bundle}} and deleting your Ruby installation
+           - {{command:rm -rf /opt/rubies}} if you installed using chruby
+           - {{command:rvm uninstall <version>}} if you used RVM
+           - {{command:rbenv uninstall <version>}} if you used Rbenv
+
+      {{bold:Additional steps you can try}}
+      Mac:
+      Try running:
+      {{command:brew install v8}}
+      {{command:bundle config build.libv8 --with-system-v8}}
+      {{command:bundle install}}
