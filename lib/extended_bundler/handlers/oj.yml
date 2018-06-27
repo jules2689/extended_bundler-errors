@@ -1,0 +1,14 @@
+-
+  versions:
+    max: 2.16.0
+  matching:
+   - "warning: implicit conversion loses integer precision: 'long' to 'int'"
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      Older OJ versions use Fixnum which is no longer available in Ruby 2.4
+
+      {{bold:What can I do?}}
+      One of the following should help:
+      - Downgrade your Ruby version
+      - Upgrade to at least OJ version 2.16.1
