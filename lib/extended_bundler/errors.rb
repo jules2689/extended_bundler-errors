@@ -8,6 +8,17 @@ require "yaml"
 
 module ExtendedBundler
   module Errors
+    NATIVE_EXTENSION_MSG = ExtendedBundler::Errors::Formatter.new(<<-EOF).format
+#{'=' * 20}
+We weren't able to handle this error, but we noticed it is an issue with {{bold:native extensions}}.
+It is recommended to:
+
+1. Find a string in the output that looks like it could be unique to this failure
+2. Search Google to try and find a solution
+3. Make an issue on {{underline:#{ExtendedBundler::Errors::HOMEPAGE}}}
+   with the output and any solutions you found
+    EOF
+
     class << self
       # Registers the plugin and adds all needed hooks
       # Will call troubleshoot via the `after-install` hook if the install does not succeed
@@ -35,11 +46,18 @@ module ExtendedBundler
       def troubleshoot(spec_install)
         path = handler_path(spec_install.name)
         return nil unless File.exist?(path)
+
+        troubleshooted = false
         yaml = YAML.load_file(path)
         yaml.each do |handler|
           next unless version_match?(spec_install.spec.version, handler['versions'])
           next unless handler['matching'].any? { |m| spec_install.error =~ Regexp.new(m) }
           spec_install.error = build_error(spec_install, handler)
+          troubleshooted
+        end
+
+        if !troubleshooted && spec_install.error.include?('Failed to build gem native extension')
+          spec_install.error = spec_install.error + "\n\n" + NATIVE_EXTENSION_MSG
         end
       end
 

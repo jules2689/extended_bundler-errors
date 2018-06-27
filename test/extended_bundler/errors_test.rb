@@ -65,6 +65,15 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
       assert_equal "No matching stuff here", spec_install.error
     end
 
+    def test_matches_name_version_but_is_native_extension_issue
+      spec_install = Bundler::ParallelInstaller::SpecInstallation.new(gem_spec)
+      spec_install.state = :failed
+      spec_install.error = "Failed to build gem native extension"
+      ExtendedBundler::Errors.troubleshoot(spec_install)
+      assert_equal "Failed to build gem native extension\n\n#{ExtendedBundler::Errors::NATIVE_EXTENSION_MSG}",
+        spec_install.error
+    end
+
     def test_matches_name_but_not_version_with_min_max
       spec_install = Bundler::ParallelInstaller::SpecInstallation.new(gem_spec(version: '0.5'))
       spec_install.state = :failed
