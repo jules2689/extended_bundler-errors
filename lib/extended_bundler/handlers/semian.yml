@@ -9,5 +9,5 @@
       You are missing an OpenSSL installation on your computer
 
       {{bold:What can I do?}}
-      Linux: {{command:sudo apt-update update && sudo apt-get install libssl-dev}}
+      Linux: {{command:sudo apt-get update && sudo apt-get install libssl-dev}}
       Mac: {{command:brew install openssl}}
