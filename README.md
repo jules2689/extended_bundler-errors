@@ -26,7 +26,7 @@ While this is a gem, you need to install it as a [Bundler plugin](https://bundle
 
 OR
 
-`bundler plugin install extended_bundler-errors --git=https://github.com/Shopify/extended_bundler-errors.git`
+`bundler plugin install extended_bundler-errors --git=https://github.com/jules2689/extended_bundler-errors.git`
 
 ## Development
 
@@ -73,7 +73,7 @@ Note, this is an array of "matchers". We will try each one iteratively against t
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/extended_bundler-errors. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jules2689/extended_bundler-errors. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -81,4 +81,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the ExtendedBundler::Errors project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/extended_bundler-errors/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the ExtendedBundler::Errors project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/jules2689/extended_bundler-errors/blob/master/CODE_OF_CONDUCT.md).
