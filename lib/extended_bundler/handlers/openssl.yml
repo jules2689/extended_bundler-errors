@@ -1,0 +1,13 @@
+-
+  versions: all
+  matching:
+   - "openssl is missing. please install openssl."
+   - "checking for openssl/ssl.h... no"
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      You are missing an OpenSSL installation on your computer
+
+      {{bold:What can I do?}}
+      Linux: {{command:sudo apt-update update && sudo apt-get install libssl-dev}}
+      Mac: {{command:brew install openssl}}
