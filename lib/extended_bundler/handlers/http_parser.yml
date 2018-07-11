@@ -9,9 +9,9 @@
       One of the following commands may help:
 
       Ubuntu:
-       - `apt-get install build-essential`
-       - `apt-get install libgmp-dev`
+       - {{command:apt-get install build-essential}}
+       - {{command:apt-get install libgmp-dev}}
 
       Mac:
-       - `xcode-select --install`
-       - `brew uninstall gmp` and `brew install gmp`
+       - {{command:xcode-select --install}}
+       - {{command:brew uninstall gmp}} and {{command:brew install gmp}}
