@@ -1,0 +1,31 @@
+-
+  versions: all
+  matching:
+   - "mini_racer_extension.cc: In function 'VALUE"
+  messages:
+    en: |
+      To install mini-racer you will need a version of gcc that supports C++11 (gcc 4.8)
+
+      If {{command:gcc --version}} is less than {{info:4.8.0}}, then you may need to run:
+      {{command:sudo apt-get install python-software-properties}}
+      {{command:sudo add-apt-repository ppa:ubuntu-toolchain-r/test}}
+      {{command:sudo apt-get update}}
+      {{command:sudo apt-get install gcc-4.8}}
+      {{command:sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50}}
+
+      In Travis CI, add:
+        {{command:- sudo: required}}
+        {{command:- dist: trusty}}
+
+        This link explains more:
+        https://github.com/discourse/mini_racer#travis-ci
+-
+  versions: all
+  matching:
+   - "include/v8.h: No such file or directory"
+  messages:
+    en: |
+      There may be an issue install with v8.
+      Try running:
+
+      {{command:gem uninstall libv8}} and then retry installing {{info:mini_racer}}
