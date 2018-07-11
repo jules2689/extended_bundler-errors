@@ -1,0 +1,26 @@
+-
+  versions: all
+  matching:
+   - "libgda is missing"
+   - "checking for libgda/sql-parser/gda-sql-parser.h... no"
+  messages:
+    en: |
+      You are missing the libgda library
+
+      One of the following commands may help:
+
+      Ubuntu:
+       - {{command:apt-get install build-essential}}
+       - {{command:apt-get install libgda-5.0-dev}}
+
+      Mac:
+       - {{command:brew install libgda}}
+       - {{command:export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/opt/libxml2/lib/pkgconfig}}
+       - You should consider adding that {{command:PKG_CONFIG_PATH}} entry to your environment (bash profile, zshrc, etc)
+
+       *Other solution*
+       {{command:sudo rm -rf /Library/Developer/CommandLineTools/}}
+       {{command:xcode-select --install}}
+
+      Other:
+        You can also check https://github.com/GNOME/libgda for more info on how to install
