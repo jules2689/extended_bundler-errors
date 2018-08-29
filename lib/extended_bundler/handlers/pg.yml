@@ -1,0 +1,12 @@
+-
+  versions: all
+  matching:
+   - "conftest.c:3:10: fatal error: 'libpq-fe.h' file not found"
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      The PG Gem cannot be installed because postgresql cannot be found
+
+      {{bold:What can I do?}}
+      Linux: {{command:sudo apt-get update && sudo apt-get install postgresql postgresql-contrib}}
+      Mac: {{command:brew install postgresql}}
