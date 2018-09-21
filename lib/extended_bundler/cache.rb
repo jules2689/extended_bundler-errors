@@ -8,7 +8,7 @@ module ExtendedBundler
         def handlers_index
           if cache_expired?
             File.write(cache_file, Time.now.utc.iso8601)
-            fetch_file('index').lines
+            fetch_file('cache/index').lines
           else
             nil
           end
@@ -32,7 +32,7 @@ module ExtendedBundler
         end
 
         def cache_file
-          File.expand_path("../../index_cache_time", __dir__)
+          File.expand_path("../../cache/index_cache_time", __dir__)
         end
       end
     end

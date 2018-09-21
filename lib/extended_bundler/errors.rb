@@ -91,6 +91,16 @@ It is recommended to:
           puts "[ExtendedBundler] Updating #{File.basename(handler, '.yml')}"
           File.write(handler, Cache.fetch_file(handler))
         end
+      rescue => e
+        path = File.expand_path("../../cache/error_#{Time.now.to_i}", __dir__)
+        File.write(path, e.backtrace.join("\n"))
+
+        puts "[ExtendedBundler] There was an error updating the handlers. We will try again in a day."
+        puts "[ExtendedBundler] In the mean time, it would be appreciated to get an issue report."
+        puts "[ExtendedBundler] Error: #{e}"
+        puts ""
+        puts "[ExtendedBundler] Click here to open an issue: #{ExtendedBundler::Errors::HOMEPAGE}/issues/new?title=#{e}"
+        puts "[ExtendedBundler] Please include the content of #{path}"
       end
 
       def version_match?(spec_version, matching_versions)
