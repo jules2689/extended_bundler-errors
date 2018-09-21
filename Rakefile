@@ -11,9 +11,9 @@ task :default => :test
 
 task :index_handlers do
   require 'time'
-  File.open("index", "w") do |f|
+  File.open("cache/index", "w") do |f|
     Dir.glob("lib/extended_bundler/handlers/*.yml") do |file|
-      f.puts("#{file},#{File.mtime(file).utc.iso8601}")
+      f.puts("#{file},#{File.mtime(file).iso8601}")
     end
   end
 end

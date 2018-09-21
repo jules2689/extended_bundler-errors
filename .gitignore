@@ -7,4 +7,4 @@
 /spec/reports/
 /tmp/
 .byebug_history
-index_cache_time
+cache/index_cache_time
