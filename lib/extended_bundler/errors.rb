@@ -1,6 +1,7 @@
 require "extended_bundler/errors/version"
 require "extended_bundler/errors/formatter"
 require "extended_bundler/backports"
+require "extended_bundler/cache"
 
 require "bundler"
 require "fileutils"
@@ -31,8 +32,11 @@ It is recommended to:
         end
 
         Bundler::Plugin.add_hook('before-install-all') do |_d|
-          # This hook makes bundler load the plugin
+          # This hook also makes bundler load the plugin
           # Because the plugin is loaded before everything, our after-install hook is registered
+          update_handlers
+          puts "[ExtendedBundler] Done"
+          puts "=" * 30
         end
       end
 
@@ -67,6 +71,27 @@ It is recommended to:
       end
 
       private
+
+      def update_handlers
+        puts "[ExtendedBundler] Updating Extended Bundler Errors Index"
+        handlers = Cache.handlers_index
+        return if handlers.nil?
+
+        handlers_to_update = []
+        handlers.select do |entry|
+          file, mtime = entry.split(',')
+          # Handlers are up to date if they exist and the mtime hasnt changed on master
+          # Otherwise, we need to update them locally
+          up_to_date = File.exist?(file) && File.mtime(file).utc >= Time.parse(mtime)
+          handlers_to_update << file unless up_to_date
+        end
+
+        return if handlers_to_update.empty?
+        handlers_to_update.each do |handler|
+          puts "[ExtendedBundler] Updating #{File.basename(handler, '.yml')}"
+          File.write(handler, Cache.fetch_file(handler))
+        end
+      end
 
       def version_match?(spec_version, matching_versions)
         # Valid versions are either the string `all` or a hash with min/max
