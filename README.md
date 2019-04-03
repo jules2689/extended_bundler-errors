@@ -12,11 +12,12 @@ This gem instead will try to match the output of the gem to a series of handlers
 
 Before when RMagick fails to install, you got a verbose log.
 
-![Before this plugin, RMagick failures were cryptic and confusing](https://user-images.githubusercontent.com/3074765/40488035-c89a6678-5f33-11e8-89fc-f66c054d8765.png)
+![Before this plugin, RMagick failures were cryptic and confusing](https://user-images.githubusercontent.com/3074765/55492679-9c61ef80-5605-11e9-83ec-184933916abc.png)
+
 
 After when it fails to install you get a specific, actionable reason and step-by-step guide on how to handle it.
 
-![After This Plugin, RMagick has better errors](https://user-images.githubusercontent.com/3074765/40489293-c8cf8e9a-5f36-11e8-88f5-fceed052aa24.png)
+![After This Plugin, RMagick has better errors](https://user-images.githubusercontent.com/3074765/55492685-9e2bb300-5605-11e9-9e67-bb555cb2537c.png)
 
 ## Installation
 
