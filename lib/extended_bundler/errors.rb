@@ -58,7 +58,7 @@ It is recommended to:
           next unless version_match?(spec_install.spec.version, handler['versions'])
           next unless handler['matching'].any? { |m| spec_install.error =~ Regexp.new(m) }
           spec_install.error = build_error(spec_install, handler)
-          troubleshooted
+          troubleshooted = true
         end
 
         if !troubleshooted && spec_install.error.include?('Failed to build gem native extension')
