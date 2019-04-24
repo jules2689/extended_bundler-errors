@@ -1,9 +1,7 @@
 -
   versions: all
   matching:
-   - cannot load such file -- mkmf
-   - sqlite3 is missing
-   - sqlite3.h is missing
+   - 'fatal error: sqlite3.h: No such file or directory'
   messages:
     en: |
       {{bold:What is the problem?}}
