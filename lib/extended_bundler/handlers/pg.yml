@@ -10,3 +10,18 @@
       {{bold:What can I do?}}
       Linux: {{command:sudo apt-get update && sudo apt-get install postgresql postgresql-contrib}}
       Mac: {{command:brew install postgresql}}
+-
+  versions: all
+  matching:
+   - "Can't find the 'libpq-fe.h header"
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      The PG Gem cannot be installed because a specific header (libpq-fe.h) cannot be found
+
+      {{bold:What can I do?}}
+      Ubuntu/Debian systems: {{command:sudo apt-get update && sudo apt-get install libpq-dev}}
+      Red Hat Linux (RHEL) systems: {{command:yum install postgresql-devel}}
+      Mac: {{command:brew install postgresql}}
+      OpenSuse: {{command:zypper in postgresql-devel}}
+      ArchLinux: {{command:pacman -S postgresql-libs}}
