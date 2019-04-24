@@ -1,10 +1,9 @@
 require 'bundler/version'
+# We need to make sure ParallelInstaller is defined before we can patch it
+require 'bundler/installer/parallel_installer'
 
 # In Bundler <= 1.17, we do not have the `after-install` hook, so monkey patch Bundler to include it
 if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.17')
-  # We need to make sure ParallelInstaller is defined before we can patch it
-  require 'bundler/installer/parallel_installer'
-
   module Bundler
     class ParallelInstaller
       private

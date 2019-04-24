@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    extended_bundler-errors (0.3.1)
+    extended_bundler-errors (0.3.2)
 
 GEM
   remote: https://rubygems.org/
@@ -23,4 +23,4 @@ DEPENDENCIES
   rake (~> 10.0)
 
 BUNDLED WITH
-   1.16.2
+   1.17.2
