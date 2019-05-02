@@ -20,7 +20,8 @@
 
       Mac:
         Option 1: Install Command Line Tools.
-        This may not always work and the tools may already be installed. It is a good first attempt to fix.
+        This may not always work and the tools may already be installed.
+        It is a good first attempt to fix.
         {{command:xcode-select --install}}
 
         Option 2: Install SDK headers directly.
