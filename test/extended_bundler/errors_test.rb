@@ -15,6 +15,13 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
       Bundler::Plugin.index.stubs(:hook_plugins).returns(['plugin'])
       Bundler::Plugin.stubs(:load_plugin).with('plugin')
     end
+
+    def gem_spec(name: 'testing_stuff', version: '1.5')
+      spec = Gem::Specification.new
+      spec.name = name
+      spec.version = Gem::Version.new(version)
+      spec
+    end
   end
 
   class RegisterTest < BaseTest
@@ -27,6 +34,24 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
       ExtendedBundler::Errors.register
       ExtendedBundler::Errors.register
       assert_equal 1, Bundler::Plugin.instance_variable_get(:@hooks_by_event)['after-install'].size
+    end
+  end
+
+  class NokogiriTest < BaseTest
+    def test_stdio_header_mac
+      spec_install = Bundler::ParallelInstaller::SpecInstallation.new(gem_spec(name: 'nokogiri', version: '10.0'))
+      spec_install.state = :failed
+      spec_install.error = "morestuff\nfatal error: 'stdio.h' file not found\nmorestuff"
+      ExtendedBundler::Errors.troubleshoot(spec_install)
+      assert_match "open macOS_SDK_headers_for_macOS_*.pkg", spec_install.error
+    end
+
+    def test_stdio_header_linux
+      spec_install = Bundler::ParallelInstaller::SpecInstallation.new(gem_spec(name: 'nokogiri', version: '10.0'))
+      spec_install.state = :failed
+      spec_install.error = "morestuff\nfatal error: stdio.h: No such file or directory\nmorestuff"
+      ExtendedBundler::Errors.troubleshoot(spec_install)
+      assert_match "sudo apt-get install build-essential", spec_install.error
     end
   end
 
@@ -96,13 +121,6 @@ class ExtendedBundler::ErrorsTest < Minitest::Test
       spec_install.error = "No package 'MagickCore' found"
       ExtendedBundler::Errors.troubleshoot(spec_install)
       assert_equal "No package 'MagickCore' found", spec_install.error
-    end
-
-    def gem_spec(name: 'testing_stuff', version: '1.5')
-      spec = Gem::Specification.new
-      spec.name = name
-      spec.version = Gem::Version.new(version)
-      spec
     end
 
     def testing_stuff_message

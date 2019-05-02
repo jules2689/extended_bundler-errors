@@ -1,0 +1,31 @@
+-
+  versions: all
+  matching:
+   - "fatal error:.+?stdio.h"
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      The {{info:/usr/include}} folder is missing.
+      This folder includes the {{info:stdio.h}} header needed for compiling
+
+      {{bold:What can I do?}}
+      Linux:
+        Start by updating the APT indices:
+        {{command:sudo apt-get update}}
+
+        Then installing these packages may help:
+        {{command:sudo apt-get install gcc}}
+        {{command:sudo apt-get install build-essential}}
+        {{command:sudo apt-get install libc6-dev}}
+
+      Mac:
+        Option 1: Install Command Line Tools.
+        This may not always work and the tools may already be installed.
+        It is a good first attempt to fix.
+        {{command:xcode-select --install}}
+
+        Option 2: Install SDK headers directly.
+        {{command:cd /Library/Developer/CommandLineTools/Packages/}}
+        {{command:open macOS_SDK_headers_for_macOS_*.pkg}}
+
+        Once this is done, you should have a {{info:/usr/include}} folder with header files.
