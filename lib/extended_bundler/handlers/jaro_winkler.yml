@@ -1,0 +1,13 @@
+-
+  versions: all
+  matching:
+   - "mkmf.rb can't find header files for ruby at /usr/lib/ruby/ruby.h"
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      You are missing an OpenSSL installation on your computer
+
+      {{bold:What can I do?}}
+      Linux: {{command:sudo apt-get update && sudo apt-get install ruby-dev}}
+      Redhat: {{command:sudo yum install ruby-devel}}
+      [open]SuSE: {{command:sudo zypper install ruby-devel}}
