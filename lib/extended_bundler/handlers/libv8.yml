@@ -1,6 +1,21 @@
 -
   versions: all
   matching:
+   - "fatal error: 'climits' file not found"
+  messages:
+    en: |
+      {{bold:What is the problem?}}
+      This problem is caused by libv8 being unable to find the appropriate v8 library.
+
+      {{bold:What can I do?}}
+      Mac:
+      Try running:
+      {{command:brew install v8}}
+      {{command:bundle config build.libv8 --with-system-v8}}
+      {{command:bundle install}}
+-
+  versions: all
+  matching:
    - unable to fetch v8 source
   messages:
     en: |
