@@ -1,0 +1,13 @@
+-
+  versions: all
+  matching:
+   - "extconf failure: need libxml2"
+  messages:
+    en: |
+      You are missing the libxml library
+      One of the following commands may help:
+      Ubuntu:
+       - {{command:sudo apt-get install libxslt-dev libxml2-dev}}
+      Mac:
+       - {{command:brew install libxml2}}
+       - {{command:bundle config --global build.libxml-ruby --with-xml2-config="$(brew --prefix libxml2)/bin/xml2-config"}}
